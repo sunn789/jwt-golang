@@ -2,11 +2,14 @@ package user
 
 import (
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
 
 type User struct {
-	Password string `json:"password" form:"password"`
-	Name     string `json:"name" form:"name"`
+	gorm.Model
+	UserName string `json:"user_name,omitempty" form:"username"`
+	Password string `json:"password,omitempty" form:"password"`
+	Name     string `json:"name,omitempty" form:"name"`
 }
 
 func LoadTestUser() *User {
