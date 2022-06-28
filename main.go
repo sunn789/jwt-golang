@@ -1,15 +1,22 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/sunn789/authInGo/user"
 	"github.com/sunn789/authInGo/user/controllers"
+	"github.com/sunn789/authInGo/util"
 )
 
 func main() {
+
+	err := util.Connection()
+	if err != nil {
+		fmt.Println(err)
+	}
 	e := echo.New()
 	e.GET("/", CheckHealty)
 	e.GET("/user/signin", controllers.SignInForm()).Name = "userSignInForm"

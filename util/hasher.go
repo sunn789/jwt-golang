@@ -6,5 +6,8 @@ import (
 
 func Hasher(textforhash string) (string, error) {
 	hashedText, err := bcrypt.GenerateFromPassword([]byte(textforhash), 14)
-	return string(hashedText), err
+	if err != nil {
+		return "", err
+	}
+	return string(hashedText), nil
 }
